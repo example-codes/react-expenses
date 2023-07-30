@@ -1,6 +1,7 @@
-import React from 'react';
-
+import React from "react";
 import Expense from "./components/Expenses/Expenses";
+// import ExpenseForm from "./components/NewExpense/ExpenseForm"
+import NewExpense from "./components/NewExpense/NewExpense";
 const expenses = [
   {
     id: "e1",
@@ -26,8 +27,9 @@ const expenses = [
 function App() {
   return (
     <div>
-      <h2>Let's get started!</h2>
-      <Expense expense={expenses} />
+      <NewExpense />
+      <Expense items={expenses} />
+      <p>anfoennfosnnsfnnfnsfn</p>
     </div>
   );
 }
