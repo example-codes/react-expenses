@@ -16,18 +16,36 @@ const MONTHS = [
 ];
 
 const ExpensesChart = ({ items = [] }) => {
-  const mockProp = Array(3)
-    .fill(null)
-    .map((_) => items)
-    .flat(Infinity)
-    .map((item, i) => ({
-      label: MONTHS[i],
-      value: item.amount,
-    }));
+  const monthWiseTotal = {
+    Jan: 0,
+    Feb: 0,
+    Mar: 0,
+    Apr: 0,
+    May: 0,
+    Jun: 0,
+    Jul: 0,
+    Aug: 0,
+    Sep: 0,
+    Oct: 0,
+    Nov: 0,
+    Dec: 0,
+  };
+
+  items.forEach((item) => {
+    const month = item.date.getMonth();
+    monthWiseTotal[MONTHS[month]] += item.amount;
+  });
+
+  const monthWiseTotalArray = MONTHS.map((monthString) => ({
+    label: monthString,
+    value: monthWiseTotal[monthString],
+  }));
+
+  // TODO: do with .reduce, reason: forEach is a void kind of code, that shouldn't be sitting in a component directly
 
   return (
     <div>
-      <Chart dataPoints={mockProp} />
+      <Chart dataPoints={monthWiseTotalArray} />
     </div>
   );
 };
